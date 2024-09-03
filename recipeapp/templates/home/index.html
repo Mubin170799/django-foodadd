@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django tutorial</title>
+    <style> 
+        table, th, td {
+            border: 1px solid white;
+            border-collapse: collapse;
+          }
+          th, td {
+            background-color: #96D4D4;
+          }
+
+          .center {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+
+    </style>
+</head>
+<body>
+
+    <a href ="/contact/" >
+        contact
+
+    </a>
+    |
+    <a href ="/about/" >
+        about
+    </a>
+
+    <h1> This is index page </h1>
+    {% comment %} {{peoples}} {% endcomment %}
+
+    
+
+    <table class="center">
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th>S name</th>
+                <th>s age</th>
+                <th>can vote</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for people in peoples%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{people.name}}</td>
+                <td>{{people.age}}</td>
+                <td>
+                    {% if people.age >= 18 %}
+                    👍
+                    {% else %}
+                    👎🏼
+
+                    {% endif %}
+
+
+                </td>
+
+
+            
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

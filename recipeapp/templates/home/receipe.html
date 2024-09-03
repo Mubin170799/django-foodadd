@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page}}</title>
+    <style> 
+        table, th, td {
+            border: 1px solid white;
+            border-collapse: collapse;
+          }
+          th, td {
+            background-color: #96D4D4;
+          }
+
+        
+
+    </style>
+
+    
+</head>
+<body>
+
+    <form class="col-6 mx-auto" method = "post" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+            <h2>Add Reciepe</h2>
+            <hr>
+          <label for="staticEmail2" class="sr-only">Reciepe name</label>
+          <input name= "receipe_name" type="text">
+        </div>
+        <div class="mb-3">
+          <label for="inputPassword2"  class="sr-only">Reciepe description</label>
+          <textarea class="form-control" name = "receipe_description"> </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="staticEmail2" class="sr-only">Reciepe Image</label>
+            <input type="file" name = "receipe_image"  class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Add Receipe</button>
+    </form>
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Recipe name</th>
+            <th scope="col">Recipe Description</th>
+            <th scope="col">Recipe image</th>
+            <th scope="col">Delete action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for rowi in recipes %}  
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{rowi.receipe_name}}</td>
+            <td>{{rowi.receipe_description}}</td>
+            <td>
+              <img src = "/media/{{rowi.receipe_image}}"></td>
+
+            <td> 
+              <a href= "delete-reciepe/{{rowi.id}}/" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</body>
+</html>
